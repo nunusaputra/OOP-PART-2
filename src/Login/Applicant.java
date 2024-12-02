@@ -25,6 +25,7 @@ public class Applicant extends Users {
         return gpa;
     }
 
+    @Override
     public void showInfo() {
         System.out.println("ID\t\t: " + getId());
         System.out.println("Name\t\t: " + getName());

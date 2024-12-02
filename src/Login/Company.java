@@ -18,6 +18,7 @@ public class Company extends Users {
         return telphone;
     }
 
+    @Override
     public void showInfo() {
         System.out.println("Name\t\t: " + getName());
         System.out.println("Address\t: " + getAddress());
