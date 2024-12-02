@@ -25,7 +25,6 @@ public class App {
         jobs.add(new Job(2, "Backend Developer", "PT Amartek"));
         jobs.add(new Job(3, "UI/UX Designer", "PT Amartek"));
 
-        // applicant.showInfo();
         login(input, users, jobs);
     }
 
@@ -66,11 +65,8 @@ public class App {
         List<String[]> userDetails = new ArrayList<>();
 
         int userIdInt = Integer.parseInt(userId);
-        // Iterasi melalui daftar pengguna
         for (Users user : users) {
-            // Bandingkan userId dengan ID pengguna
             if (user.getId() == userIdInt) {
-                // Tambahkan detail pengguna ke daftar (array String)
                 if (user instanceof Applicant) {
                     Applicant applicant = (Applicant) user;
                     userDetails.add(new String[] {
