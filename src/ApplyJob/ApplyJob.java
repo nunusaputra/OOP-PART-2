@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Login.Applicant;
 
-public class ApplyJob extends ValidateChoice {
+public class ApplyJob implements JobInterfaces {
     private ArrayList<Applicant> applicants;
     private ArrayList<Job> jobs;
     private ArrayList<ApplicantRecord> applicantRecords;
@@ -32,7 +32,7 @@ public class ApplyJob extends ValidateChoice {
         return applicantRecords;
     }
 
-    public void menu(Scanner input) {
+    public void menu(Scanner input, ApplyJob applyJob) {
         System.out.println("--- SELAMAT DATANG DI APLIKASI JOB PORTAL ---");
         System.out.println("\nSilahkan Pilih Menu Berikut ini\t: ");
         System.out.println("1. Lamar Pekerjaan");
@@ -51,7 +51,7 @@ public class ApplyJob extends ValidateChoice {
                 displayApplicantRecord();
                 break;
             case 3:
-                manageStatus(input);
+                manageStatus(input, applyJob);
                 break;
             default:
                 System.out.println("Yang bener aje kocak!");
@@ -59,16 +59,7 @@ public class ApplyJob extends ValidateChoice {
         }
     }
 
-    public void displayJob() {
-        System.out.println("-- BERIKUT DAFTAR PEKERJAAN YANG DAPAT ANDA LAMAR --");
-
-        for (int i = 0; i < jobs.size(); i++) {
-            Job job = jobs.get(i);
-            System.out.println((i + 1) + ". " + job.getJobTitle() + " - " + job.getCompanyName());
-        }
-    }
-
-    public void applyJob(Scanner input, String userId) {
+    public void applyJob(Scanner input, String userId, ApplyJob applyJob) {
         boolean continueApply = true;
         String status = "waiting";
 
@@ -77,11 +68,7 @@ public class ApplyJob extends ValidateChoice {
             int numbers = input.nextInt();
             input.nextLine();
 
-            String result = checkChoice(numbers);
-            if (!result.isEmpty()) {
-                System.out.println(result);
-                return;
-            }
+            // String result = utils.ValidateChoice.checkChoice(numbers, jobs);
 
             if (numbers > 0 && numbers <= jobs.size()) {
                 Job selectedJob = jobs.get(numbers - 1);
@@ -110,7 +97,7 @@ public class ApplyJob extends ValidateChoice {
 
             if (!choice.equalsIgnoreCase("ya")) {
                 continueApply = false;
-                menu(input);
+                menu(input, applyJob);
             } else {
                 displayJob();
             }
@@ -144,25 +131,13 @@ public class ApplyJob extends ValidateChoice {
         }
     }
 
-    public void updateStatus(Applicant applicant, Job job, String newStatus) {
-        for (ApplicantRecord record : applicantRecords) {
-            if (record.getApplicant().equals(applicant) && record.getJob().equals(job)) {
-                record.setStatus(newStatus);
-                System.out.println("Successfully update status applicant");
-                return;
-            }
-        }
-        System.out.println("No data found!");
-    }
-
-    public void manageStatus(Scanner input) {
+    public void manageStatus(Scanner input, ApplyJob applyJob) {
         System.out.println("-- MANAGE STATUS APPLICANT --");
         displayApplicantRecord();
 
         System.out.print("\nMasukan nama pelamar\t: ");
         String name = input.nextLine();
         Applicant applicant = findByName(name);
-        System.out.println(applicant);
         if (applicant == null) {
             System.out.println("Pelamar tidak ditemukan!");
             return;
@@ -178,7 +153,7 @@ public class ApplyJob extends ValidateChoice {
             return;
         }
 
-        System.out.println("\nMasukan status baru (waiting/accepted/rejected)\t: ");
+        System.out.println("\nMasukan status baru (accepted/rejected)\t: ");
         String newStatus = input.nextLine();
         updateStatus(applicant, job, newStatus);
 
@@ -205,13 +180,25 @@ public class ApplyJob extends ValidateChoice {
     }
 
     @Override
-    public String checkChoice(int numbers) {
-        String result = "";
-        if (numbers < 1 || numbers > jobs.size()) {
-            result = "Pekerjaan yang anda pilih tidak valid!";
+    public void updateStatus(Applicant applicant, Job job, String newStatus) {
+        for (ApplicantRecord record : applicantRecords) {
+            if (record.getApplicant().equals(applicant) && record.getJob().equals(job)) {
+                record.setStatus(newStatus);
+                System.out.println("Successfully update status applicant");
+                return;
+            }
         }
+        System.out.println("No data found!");
+    }
 
-        return result;
+    @Override
+    public void displayJob() {
+        System.out.println("-- BERIKUT DAFTAR PEKERJAAN YANG DAPAT ANDA LAMAR --");
+
+        for (int i = 0; i < jobs.size(); i++) {
+            Job job = jobs.get(i);
+            System.out.println((i + 1) + ". " + job.getJobTitle() + " - " + job.getCompanyName());
+        }
     }
 
 }

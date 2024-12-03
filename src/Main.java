@@ -24,27 +24,6 @@ public class Main {
         login.addUsers(applicant);
         login.addUsers(company);
 
-        loginUsers(input, login, applyJob);
-    }
-
-    public static void loginUsers(Scanner input, LoginValidate login, ApplyJob applyJob) {
-        System.out.println("\n-- SILAHKAN MELAKUKAN LOGIN TERLEBIH DAHULU! --");
-        System.out.print("Masukan email anda: ");
-        String email = input.nextLine();
-        System.out.print("Masukan password anda: ");
-        String password = input.nextLine();
-
-        String result = login.checkValidate(email, password);
-        String userId = result;
-        if (result.equals("Email atau pasword salah!")) {
-            System.out.println(result);
-            System.out.println("Login Failed!");
-            return;
-        } else {
-            System.out.println("Login Berhasil");
-            applyJob.menu(input);
-            applyJob.applyJob(input, userId);
-        }
-
+        login.loginUsers(input, applyJob);
     }
 }

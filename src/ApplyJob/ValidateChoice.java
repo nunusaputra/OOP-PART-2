@@ -1,5 +1,5 @@
 package ApplyJob;
 
-public abstract class ValidateChoice {
-    public abstract String checkChoice(int numbers);
+public interface ValidateChoice {
+    public String checkChoice(int numbers);
 }
