@@ -51,7 +51,7 @@ public class ApplyJob extends ValidateChoice {
                 displayApplicantRecord();
                 break;
             case 3:
-                System.out.println("babi");
+                manageStatus(input);
                 break;
             default:
                 System.out.println("Yang bener aje kocak!");
@@ -142,6 +142,66 @@ public class ApplyJob extends ValidateChoice {
             System.out.println("Company\t\t: " + job.getCompanyName());
             System.out.println("Status\t\t: " + applicantRecord.getStatus());
         }
+    }
+
+    public void updateStatus(Applicant applicant, Job job, String newStatus) {
+        for (ApplicantRecord record : applicantRecords) {
+            if (record.getApplicant().equals(applicant) && record.getJob().equals(job)) {
+                record.setStatus(newStatus);
+                System.out.println("Successfully update status applicant");
+                return;
+            }
+        }
+        System.out.println("No data found!");
+    }
+
+    public void manageStatus(Scanner input) {
+        System.out.println("-- MANAGE STATUS APPLICANT --");
+        displayApplicantRecord();
+
+        System.out.print("\nMasukan nama pelamar\t: ");
+        String name = input.nextLine();
+        Applicant applicant = findByName(name);
+        System.out.println(applicant);
+        if (applicant == null) {
+            System.out.println("Pelamar tidak ditemukan!");
+            return;
+        }
+
+        System.out.print("Masukan nama pekerjaan\t: ");
+        String jobName = input.nextLine();
+        System.out.print("Masukan nama perusahaan\t: ");
+        String company = input.nextLine();
+        Job job = findByName(jobName, company);
+        if (job == null) {
+            System.out.println("Pekerjaan atau Perusahaan tidak ditemukan!");
+            return;
+        }
+
+        System.out.println("\nMasukan status baru (waiting/accepted/rejected)\t: ");
+        String newStatus = input.nextLine();
+        updateStatus(applicant, job, newStatus);
+
+        displayApplicantRecord();
+    }
+
+    private Applicant findByName(String name) {
+        for (ApplicantRecord record : applicantRecords) {
+            if (record.getApplicant().getName().equalsIgnoreCase(name)) {
+                return record.getApplicant();
+            }
+        }
+        return null;
+    }
+
+    private Job findByName(String name, String company) {
+        for (ApplicantRecord record : applicantRecords) {
+            if (record.getJob().getJobTitle().equalsIgnoreCase(name)
+                    && record.getJob().getCompanyName().equalsIgnoreCase(company)) {
+                return record.getJob();
+            }
+        }
+        return null;
     }
 
     @Override
