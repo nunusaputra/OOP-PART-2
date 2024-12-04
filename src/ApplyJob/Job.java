@@ -5,6 +5,10 @@ public class Job {
     private String jobTitle;
     private String companyName;
 
+    public Job() {
+        super();
+    }
+
     public Job(int id, String jobTitle, String companyName) {
         this.id = id;
         this.jobTitle = jobTitle;

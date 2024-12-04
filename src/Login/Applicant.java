@@ -27,10 +27,11 @@ public class Applicant extends Users {
 
     @Override
     public void showInfo() {
-        System.out.println("ID\t\t: " + getId());
         System.out.println("Name\t\t: " + getName());
+        System.out.println("Name\t\t: " + getEmail());
         System.out.println("University\t: " + getUniversity());
         System.out.println("Faculty\t\t: " + getFaculty());
         System.out.println("GPA\t\t: " + getGpa());
     }
+
 }
