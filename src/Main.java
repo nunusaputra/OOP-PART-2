@@ -24,6 +24,54 @@ public class Main {
         login.addUsers(applicant);
         login.addUsers(company);
 
-        login.loginUsers(input, applyJob);
+        loginUsers(input, applyJob, login);
+    }
+
+    public static void menu(Scanner input, ApplyJob applyJob) {
+        System.out.println("--- SELAMAT DATANG DI APLIKASI JOB PORTAL ---");
+        System.out.println("\nSilahkan Pilih Menu Berikut ini\t: ");
+        System.out.println("1. Lamar Pekerjaan");
+        System.out.println("2. Melihat Daftar Pelamar");
+        System.out.println("3. Manage Status Pelamar");
+        System.out.println("4. Exit");
+        System.out.print("\nSilahkan masukan pilihan anda\t: ");
+        int choice = input.nextInt();
+        input.nextLine();
+
+        switch (choice) {
+            case 1:
+                applyJob.displayJob();
+                break;
+            case 2:
+                applyJob.displayApplicantRecord();
+                break;
+            case 3:
+                applyJob.manageStatus(input, applyJob);
+                break;
+            default:
+                System.out.println("Yang bener aje kocak!");
+                break;
+        }
+    }
+
+    public static void loginUsers(Scanner input, ApplyJob applyJob, LoginValidate login) {
+        System.out.println("\n-- SILAHKAN MELAKUKAN LOGIN TERLEBIH DAHULU! --");
+        System.out.print("Masukan email anda: ");
+        String email = input.nextLine();
+        System.out.print("Masukan password anda: ");
+        String password = input.nextLine();
+
+        String result = login.checkValidate(email, password);
+        String userId = result;
+        if (result.equals("Email atau pasword salah!")) {
+            System.out.println(result);
+            System.out.println("Login Failed!");
+            return;
+        } else {
+            System.out.println("Login Berhasil");
+            menu(input, applyJob);
+            applyJob.applyJob(input, userId, applyJob);
+        }
+
     }
 }

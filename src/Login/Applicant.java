@@ -1,9 +1,5 @@
 package Login;
 
-import java.util.ArrayList;
-
-import ApplyJob.ApplicantRecord;
-
 public class Applicant extends Users {
     private String university;
     private String faculty;
@@ -38,14 +34,4 @@ public class Applicant extends Users {
         System.out.println("GPA\t\t: " + getGpa());
     }
 
-    // @Override
-    // public Object findByName(String name, ArrayList<ApplicantRecord>
-    // applicantRecords) {
-    // for (ApplicantRecord applicantRecord : applicantRecords) {
-    // if (applicantRecord.getApplicant().getName().equalsIgnoreCase(name)) {
-    // return applicantRecord.getApplicant();
-    // }
-    // }
-    // return null;
-    // }
 }

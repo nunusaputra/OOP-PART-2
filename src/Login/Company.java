@@ -1,9 +1,5 @@
 package Login;
 
-import java.util.ArrayList;
-
-import ApplyJob.ApplicantRecord;
-
 public class Company extends Users {
     private String address;
     private String telphone;
@@ -30,25 +26,4 @@ public class Company extends Users {
         System.out.println("Telphone\t: " + getTelphone());
     }
 
-    // @Override
-    // public Object findByName(String name, ArrayList<ApplicantRecord>
-    // applicantRecords) {
-    // for (ApplicantRecord applicantRecord : applicantRecords) {
-    // if (applicantRecord.getJob().getJobTitle().equalsIgnoreCase(name)) {
-    // return applicantRecord.getJob();
-    // }
-    // }
-    // return null;
-    // }
-
-    // public Object findByName(String name, String company,
-    // ArrayList<ApplicantRecord> applicantRecords) {
-    // for (ApplicantRecord applicantRecord : applicantRecords) {
-    // if (applicantRecord.getJob().getJobTitle().equalsIgnoreCase(name)
-    // && applicantRecord.getJob().getCompanyName().equalsIgnoreCase(company)) {
-    // return applicantRecord.getJob();
-    // }
-    // }
-    // return null;
-    // }
 }

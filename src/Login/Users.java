@@ -1,9 +1,5 @@
 package Login;
 
-import java.util.ArrayList;
-
-import ApplyJob.ApplicantRecord;
-
 public abstract class Users {
     private int id;
     private String name;
@@ -34,7 +30,4 @@ public abstract class Users {
     }
 
     public abstract void showInfo();
-
-    // public abstract Object findByName(String name, ArrayList<ApplicantRecord>
-    // applicantRecords);
 }
