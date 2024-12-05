@@ -1,27 +1,27 @@
 package Login;
 
-public class Applicant extends Users {
-    private String university;
-    private String faculty;
-    private double gpa;
+public class Applicant<V, W> extends Users<Integer, String> {
+    private V university;
+    private V faculty;
+    private W gpa;
 
-    public Applicant(int id, String name, String email, String password, String university, String faculty,
-            double gpa) {
+    public Applicant(Integer id, String name, String email, String password, V university, V faculty,
+            W gpa) {
         super(id, name, email, password);
         this.university = university;
         this.faculty = faculty;
         this.gpa = gpa;
     }
 
-    public String getUniversity() {
+    public V getUniversity() {
         return university;
     }
 
-    public String getFaculty() {
+    public V getFaculty() {
         return faculty;
     }
 
-    public double getGpa() {
+    public W getGpa() {
         return gpa;
     }
 

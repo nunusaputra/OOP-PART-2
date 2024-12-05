@@ -1,20 +1,20 @@
 package Login;
 
-public class Company extends Users {
-    private String address;
-    private String telphone;
+public class Company<U> extends Users<Integer, String> {
+    private U address;
+    private U telphone;
 
-    public Company(int id, String name, String email, String password, String address, String telphone) {
+    public Company(int id, String name, String email, String password, U address, U telphone) {
         super(id, name, email, password);
         this.address = address;
         this.telphone = telphone;
     }
 
-    public String getAddress() {
+    public U getAddress() {
         return address;
     }
 
-    public String getTelphone() {
+    public U getTelphone() {
         return telphone;
     }
 

@@ -1,29 +1,29 @@
 package ApplyJob;
 
-public class Job {
-    private int id;
-    private String jobTitle;
-    private String companyName;
+public class Job<T, U> {
+    private T id;
+    private U jobTitle;
+    private U companyName;
 
     public Job() {
         super();
     }
 
-    public Job(int id, String jobTitle, String companyName) {
+    public Job(T id, U jobTitle, U companyName) {
         this.id = id;
         this.jobTitle = jobTitle;
         this.companyName = companyName;
     }
 
-    public int getId() {
+    public T getId() {
         return id;
     }
 
-    public String getJobTitle() {
+    public U getJobTitle() {
         return jobTitle;
     }
 
-    public String getCompanyName() {
+    public U getCompanyName() {
         return companyName;
     }
 
