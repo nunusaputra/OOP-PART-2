@@ -1,31 +1,31 @@
 package Login;
 
-public abstract class Users {
-    private int id;
-    private String name;
-    private String email;
-    private String password;
+public abstract class Users<T, U> {
+    private T id;
+    private U name;
+    private U email;
+    private U password;
 
-    public Users(int id, String name, String email, String password) {
+    public Users(T id, U name, U email, U password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    public T getId() {
         return id;
     }
 
-    public String getName() {
+    public U getName() {
         return name;
     }
 
-    public String getEmail() {
+    public U getEmail() {
         return email;
     }
 
-    public boolean validatePassword(String password) {
+    public boolean validatePassword(U password) {
         return this.password.equals(password);
     }
 

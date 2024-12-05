@@ -5,12 +5,14 @@ import Login.Applicant;
 interface ApplyJobInterfaces {
     public void displayJob();
 
-    public void addApplicant(Applicant applicant);
+    public void addApplicant(Applicant<String, Double> applicant);
 
-    public void addJob(Job job);
+    public void addJob(Job<Integer, String> job);
 
-    public void addApplicantRecord(Applicant applicant, Job job);
+    public void addApplicantRecord(Applicant<String, Double> applicant, Job<Integer, String> job);
 
-    public void updateStatus(Applicant applicant, Job job, String newStatus);
+    public void getApplicantResult();
+
+    public void updateStatus(Applicant<String, Double> applicant, Job<Integer, String> job, String newStatus);
 
 }

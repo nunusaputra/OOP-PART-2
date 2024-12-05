@@ -11,7 +11,7 @@ public class ValidateChoice {
         this.result = "";
     }
 
-    public String checkChoice(int numbers, ArrayList<Job> jobs) {
+    public String checkChoice(int numbers, ArrayList<Job<Integer, String>> jobs) {
         if (numbers < 1 || numbers > jobs.size()) {
             result = "Pekerjaan yang anda pilih tidak valid!";
         }
